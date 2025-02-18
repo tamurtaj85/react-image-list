@@ -1,0 +1,8 @@
+/* woven variant styles */
+#image-list-item:nth-child(even) > img.wovenStyles {
+  height: 75% !important;
+}
+
+#image-list-item:nth-child(odd) > img.wovenStyles {
+  height: 100% !important;
+}
