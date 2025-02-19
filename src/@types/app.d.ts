@@ -1,16 +1,19 @@
 type ImageListContainerProps = {
   cols?: number;
-  rowHeight?: number | string;
+  rowHeight?: number | string | 'auto';
   variant?: 'standard' | 'woven' | 'masonry';
   gap?: number;
-} & React.ComponentPropsWithoutRef<'div'>;
+  rootProps?: Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
+} & Pick<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
 type ImageListItemProps = {
   colSpan?: number;
   rowSpan?: number;
-} & React.ComponentPropsWithoutRef<'div'>;
+  rootProps?: Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
+} & Pick<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
 type ImageItemProps = {
   title: string;
   img: string;
-} & React.ComponentPropsWithoutRef<'img'>;
+  rootProps?: React.ComponentPropsWithoutRef<'img'>;
+};

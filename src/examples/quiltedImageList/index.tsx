@@ -1,6 +1,5 @@
 import { itemDataQuilted } from '@/assets/imagesData';
-import { ImageListContainer } from '@/components/imageListContainer';
-import { Image, ImageListItem } from '@/components/imageListItem';
+import { Image, ImageListContainer, ImageListItem } from '@/components';
 
 export const QuiltedImageList = () => {
   return (

@@ -5,13 +5,14 @@ export const DEFAULT_ROW_HEIGHT = 165;
 
 export const ImageListContainer: React.FC<ImageListContainerProps> = ({
   cols = 3,
-  rowHeight = DEFAULT_ROW_HEIGHT,
+  rowHeight = 'auto',
   variant = 'standard',
   gap = 4,
   children,
-  style,
-  ...rest
+  rootProps = {},
 }) => {
+  const { style, ...rest } = rootProps;
+
   // get children length to determine the number of rows and their specified height
   const rowCount = Math.round(React.Children.count(children) / cols);
   const rowHeightUnit = typeof rowHeight === 'number' ? 'px' : '';
@@ -45,7 +46,7 @@ export const ImageListContainer: React.FC<ImageListContainerProps> = ({
       {...rest}
     >
       <ImageListContext.Provider
-        value={{ rowHeight: computedRowHeight, variant }}
+        value={{ rowHeight: computedRowHeight, variant, rowCount }}
       >
         {children}
       </ImageListContext.Provider>

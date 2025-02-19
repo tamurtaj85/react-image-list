@@ -1,12 +1,11 @@
 import { itemDataQuilted } from '@/assets/imagesData';
-import { ImageListContainer } from '@/components/imageListContainer';
-import { Image, ImageListItem } from '@/components/imageListItem';
+import { Image, ImageListContainer, ImageListItem } from '@/components';
 
 export const MasonryImageList = () => {
   return (
     <ImageListContainer variant='masonry'>
       {itemDataQuilted.map((item) => (
-        <ImageListItem key={item.title} rowSpan={Math.random() * 10}>
+        <ImageListItem key={item.title}>
           <Image img={item.img} title={item.title} />
         </ImageListItem>
       ))}

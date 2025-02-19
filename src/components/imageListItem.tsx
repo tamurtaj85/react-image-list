@@ -5,10 +5,11 @@ export const ImageListItem: React.FC<ImageListItemProps> = ({
   colSpan = 1,
   rowSpan = 1,
   children,
-  style,
-  ...rest
+  rootProps = {},
 }) => {
-  const { variant } = useContext(ImageListContext);
+  const { variant, rowCount } = useContext(ImageListContext);
+
+  const { style, ...rest } = rootProps;
 
   const safeColSpan = colSpan ?? 1;
   const safeRowSpan = rowSpan ?? 1;
@@ -19,16 +20,17 @@ export const ImageListItem: React.FC<ImageListItemProps> = ({
         id='image-list-item'
         style={{
           // border: '1px red dashed',
-          //
+          position: 'relative',
+          // grid spanning for children
           gridColumn: `span ${safeColSpan} / span ${safeColSpan}`,
           gridRow:
             variant === 'masonry'
-              ? `span ${Math.round(Math.random() * safeRowSpan)}`
+              ? `span ${Math.round(Math.random() * (rowSpan ?? rowCount))}`
               : `span ${safeRowSpan} / span ${safeRowSpan}`,
           // flex container
           display: 'flex',
-          flex: 1,
-          alignItems: variant === 'woven' ? 'center' : 'start',
+          flexDirection: 'column',
+          justifyContent: variant === 'woven' ? 'center' : 'start',
           //
           ...style,
         }}
@@ -37,34 +39,5 @@ export const ImageListItem: React.FC<ImageListItemProps> = ({
         {children}
       </div>
     </>
-  );
-};
-
-export const Image: React.FC<ImageItemProps> = ({
-  title,
-  img,
-  style,
-  className,
-  loading = 'lazy',
-  ...rest
-}) => {
-  const { variant } = useContext(ImageListContext);
-
-  return (
-    <img
-      id='image-item'
-      srcSet={img}
-      src={img}
-      alt={title}
-      loading={loading}
-      className={`${variant === 'woven' ? 'wovenStyles' : ''} ${className}`}
-      style={{
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        ...style,
-      }}
-      {...rest}
-    />
   );
 };

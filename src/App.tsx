@@ -1,5 +1,6 @@
 import './App.css';
 import {
+  ImageListWithItemBar,
   MasonryImageList,
   QuiltedImageList,
   StandardImageList,
@@ -24,6 +25,10 @@ function App() {
       <div>
         <p>Masonry Image List</p>
         <MasonryImageList />
+      </div>
+      <div>
+        <p>Image List With Item Bar</p>
+        <ImageListWithItemBar />
       </div>
     </div>
   );
